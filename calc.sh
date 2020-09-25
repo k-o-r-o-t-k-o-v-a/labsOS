@@ -9,7 +9,7 @@ echo "wrong operation"
 exit -5;
 fi;
 
-re='^?[0-9]+$'
+re='^-?[0-9]+$'
 if ! [[ "$2" =~ $re && "$3" =~ $re ]]; then
 echo "error: you have entered not integers"
 exit -1;
