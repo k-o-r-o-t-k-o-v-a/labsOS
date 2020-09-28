@@ -1,16 +1,27 @@
-#!/bin/bash
-if ! [[ $# -eq 2 ]]; then
-echo "error: wrong number of parameters"
-exit 4;
-fi;
-if ! [ -f "$1" ]; then
-echo "error: such file does not exists"
-exit 3;
-fi;
-if ! [ -r $1 ];
-then
-echo "error: can not read this file"
-exit 8;
-fi;
+#! /bin/bash
 
-tac $1 | rev >$2
+function reversecheck {
+	if [[ $# < 2 ]]; then
+		echo -1
+		exit
+	fi
+	if ! [[ -e $1 ]]; then 
+		echo -5
+		exit
+	fi
+	text=$(tac $1 2>/dev/null)
+	if [[ $? -eq 1 ]]; then 
+		echo -7
+		exit
+	fi
+	if ! [[ -r $2 ]]; then
+		echo -8
+		exit
+	fi	
+	echo 0
+}
+
+function reverse {
+	text=$(tac $1 2>/dev/null)
+	echo "$text" | rev>$2
+}
