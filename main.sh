@@ -30,11 +30,15 @@ fi
 ./search.sh $2 $3;;
 
 reverse)
-checkfile "reverse.sh"
 
-if ! [ -f "reverse.sh" ]; then exit -3
-fi
-./reverse.sh $2 $3;;
+check=$(reverse_check_args $2 $3)
+		if [[ $check -eq 0 ]]
+		then
+			reverse $2 $3
+		else
+			print_error $check
+			exit $check
+		fi ;;
 
 strlen)
 checkfile "strlen.sh"
