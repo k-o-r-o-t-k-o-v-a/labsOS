@@ -7,5 +7,10 @@ if ! [ -f "$1" ]; then
 echo "error: such file does not exists"
 exit 3;
 fi;
-tac $1 >$2
-touch $2
+if ! [ -r $1 ];
+then
+echo "error: can not read this file"
+exit 8;
+fi;
+
+tac $1 | rev >$2

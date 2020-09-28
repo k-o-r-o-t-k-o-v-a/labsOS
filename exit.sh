@@ -2,7 +2,7 @@
 re='^-?[0-9]+$'
 if [[ -n "$1" ]]; then
 if ! [[ "$1" =~ $re ]]; then
-echo ""error: not a number"
+echo "error: not a number"
 exit -1;
 else
 
@@ -13,6 +13,5 @@ else
 exit "$1";
 fi;
 fi;
-else
 exit 0;
 fi;

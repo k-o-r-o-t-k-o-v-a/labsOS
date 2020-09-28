@@ -1,7 +1,11 @@
 #!/bin/bash
-if ! [[ $# -eq 1 ]]; then
+if ! [[ $# -eq 0 ]]; then
 echo "wrong number of parameters"
 exit 4
-else
-echo ${#1}
+if ! [[ $1 -eq $2 ]]; then
+echo "test"
+fi
+str="$@"
+echo "${#str}"
+exit 0
 fi

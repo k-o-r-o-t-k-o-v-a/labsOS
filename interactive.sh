@@ -1,4 +1,8 @@
+#!/bin/bash
+
 source main.sh
+
+Menu(){
 
 echo "
 Enter the letter corresponding to the command:
@@ -9,27 +13,30 @@ r - reverse;
 str - strlen;
 l - log;
 h - help;
-e - exit "
+e - exit;
+q - quit menu "
 
 read letter
+
 case $letter in
 c)
-echo "Enter the desired operation (sum/sub/div/mul)"
+echo "Enter the desired operation (sum/sub/div/nul)"
 read op
+
 echo "Enter the first number";
 read num1;
 echo "Enter the second number";
 read num2;
 
-./calc.sh "$op" "$num1" "#num2"
+./calc.sh "$op" "$num1" "$num2"
 ;;
 
 s)
-echo "Enter the regular expression"
+
+echo "Enter the regular expression";
 read reg
 echo "Enter the directory";
-read dir
-
+read dir;
 ./search.sh "$reg" "$dir"
 ;;
 
@@ -42,6 +49,7 @@ echo "Enter the input file"; read in
 
 str)
 echo "Enter a line"; read line
+
 ./strlen.sh "$line"
 ;;
 
@@ -51,11 +59,29 @@ l)
 ;;
 
 h)
+
 ./help.sh
 ;;
 
 e)
-echo "Enter the code number of left the line empty"; read code
+echo "Enter the code number or left the line empty"; read code
 ./exit.sh "$code"
 ;;
+
+q)
+exit 0
+;;
+
+*)
+echo "wrong command. try again? (y/n)"
+read ans
+if ! [[ $ans = "y" ]]; then
+exit 0
+fi
 esac
+
+}
+while true
+do
+Menu
+done
