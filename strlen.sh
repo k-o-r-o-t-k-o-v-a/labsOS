@@ -2,10 +2,7 @@
 if ! [[ $# -eq 0 ]]; then
 echo "wrong number of parameters"
 exit 4
-if ! [[ $1 -eq $2 ]]; then
-echo "test"
-fi
-str="$@"
-echo "${#str}"
+
+echo "${#1}"
 exit 0
 fi
