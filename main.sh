@@ -5,7 +5,7 @@ if ! [[ -r $1 ]]; then
 echo "error: no permission"
 exit 2;
 fi
-
+}
 no(){
 echo "no access"
 exit 1
