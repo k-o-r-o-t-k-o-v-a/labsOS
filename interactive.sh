@@ -41,8 +41,8 @@ read dir;
 ;;
 
 r)
-echo "Enter the output file"; read out
-echo "Enter the input file"; read in
+echo "Enter the output file"; read output
+echo "Enter the input file"; read input
 
 ./reverse.sh "$out" "$in"
 ;;
