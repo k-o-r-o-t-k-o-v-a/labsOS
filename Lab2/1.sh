@@ -17,9 +17,9 @@ ps o pid,start_time —sort=start_time | tail -n 1 | awk '{print $1, $2}' >task3
 #!/bin/bash
 
 for pid in $(ps -Ao pid | tail -n +2); do для каждого процесса кот получился в рез ps - все процессы 
-tmp="/proc/"$pid  псевдо файловая система инфа о проц в папках с ном проц и ядре
+tmp="/proc/"$pid  папка где хранится инфа о проц псевдо файловая система инфа о проц в папках с ном проц и ядре
 
-if [[ -e $tmp"/status" ]] && [[ -e $tmp"/sched" ]] ; then если есть папки -e exists 
+if [[ -e $tmp"/status" ]] && [[ -e $tmp"/sched" ]] ; then если есть файлы -e exists 
 
 ppid=$(grep "PPid:*" $tmp"/status" | grep -oE "[0-9]+") получаем ppid род процесса из статуса строчка с начало ppid: проверка регуляркой
 if [ -z $ppid ]; then если id пустое
@@ -42,7 +42,7 @@ done | sort -nk2 | awk '{print "ProcessID="$1" : Parent_ProcessID="$2" : Average
 #!/bin/bash
 
 ppid_0="0" текущий проц
-ARTSUM="0"
+ARTSUM="0" 
 COUNT="0"
 AVG="0"
 
@@ -74,8 +74,8 @@ done > task5.txt
 #!/bin/bash проходимся по файлу статус у кажд проц  
 mpid=-1
 msize=-1
-for pid in $(ls /proc/ | grep -E '[0-9]+'); do
-tmp="/proc/"$pid"/status"
+for pid in $(ls /proc/ | grep -E '[0-9]+'); do в проке папки с номерами процессов, захожу длякаждого пид в эту папку
+tmp="/proc/"$pid"/status" записываю файл статус для кажд проц(там вмсайз)
 if [[ -e $tmp ]]; then если сущ берем размер памяти кот исп проц
 cursize=$(grep "VmSize:" $tmp | awk '{print $2}')
 if [[ "cursize" -gt "$msize" ]]; then если тек больше пред
